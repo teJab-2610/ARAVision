@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "633594977993",
+    "project_id": "aravision-39e6d",
+    "storage_bucket": "aravision-39e6d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:633594977993:android:333b0ed2d7f724df73b718",
+        "android_client_info": {
+          "package_name": "com.example.aravision"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkm4hqALbbIKGV9UqknUe4SM05ywXBwgw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
