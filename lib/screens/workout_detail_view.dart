@@ -1,9 +1,10 @@
 import 'package:aravision/common/colors_extension.dart';
 import 'package:aravision/widgets/icon_title_next_row.dart';
 import 'package:aravision/widgets/round_button.dart';
-// import 'package:aravision/view/workout_tracker/exercises_stpe_details.dart';
-// import 'package:aravision/view/workout_tracker/workout_schedule_view.dart';
+//import 'package:aravision/view/workout_tracker/exercises_stpe_details.dart';
+//import 'package:aravision/view/workout_tracker/workout_schedule_view.dart';
 import 'package:flutter/material.dart';
+import 'package:aravision/widgets/video_player.dart';
 
 //import '../widgets/exercises_set_section.dart';
 
@@ -109,25 +110,65 @@ class _WorkoutDetailViewState extends State<WorkoutDetailView> {
                   decoration: BoxDecoration(
                       color: TColor.lightGray,
                       borderRadius: BorderRadius.circular(10)),
-                  // child: Image.asset(
-                  //   "assets/img/black_btn.png",
-                  //   width: 15,
-                  //   height: 15,
-                  //   fit: BoxFit.contain,
-                  // ),
+                  child: Image.asset(
+                    "assets/img/black_btn.png",
+                    width: 15,
+                    height: 15,
+                    fit: BoxFit.contain,
+                  ),
                 ),
               ),
               actions: [
-                InkWell(
-                  onTap: () {},
+                // InkWell(
+                //   onTap: () {
+                //     //show drop down menu having options "Tracker" and "Report"
+
+                //   },
+                //   child: Container(
+                //     margin: const EdgeInsets.all(8),
+                //     height: 40,
+                //     width: 40,
+                //     alignment: Alignment.center,
+                //     decoration: BoxDecoration(
+                //         color: TColor.lightGray,
+                //         borderRadius: BorderRadius.circular(10)),
+                //     child: Image.asset(
+                //       "assets/img/more_btn.png",
+                //       width: 15,
+                //       height: 15,
+                //       fit: BoxFit.contain,
+                //     ),
+                //   ),
+                // )
+                PopupMenuButton<String>(
+                  onSelected: (value) {
+                    // Handle the selected option
+                    if (value == 'tracker') {
+                      // Navigate to the tracker screen or perform the tracker-related action
+                    } else if (value == 'feedback') {
+                      // Navigate to the feedback screen or perform the feedback-related action
+                    }
+                  },
+                  itemBuilder: (BuildContext context) =>
+                      <PopupMenuEntry<String>>[
+                    PopupMenuItem<String>(
+                      value: 'tracker',
+                      child: Text('Tracker'),
+                    ),
+                    PopupMenuItem<String>(
+                      value: 'feedback',
+                      child: Text('Feedback'),
+                    ),
+                  ],
                   child: Container(
                     margin: const EdgeInsets.all(8),
                     height: 40,
                     width: 40,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                        color: TColor.lightGray,
-                        borderRadius: BorderRadius.circular(10)),
+                      color: TColor.lightGray,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                     child: Image.asset(
                       "assets/img/more_btn.png",
                       width: 15,
@@ -135,7 +176,7 @@ class _WorkoutDetailViewState extends State<WorkoutDetailView> {
                       fit: BoxFit.contain,
                     ),
                   ),
-                )
+                ),
               ],
             ),
             SliverAppBar(
@@ -205,15 +246,15 @@ class _WorkoutDetailViewState extends State<WorkoutDetailView> {
                               ],
                             ),
                           ),
-                          TextButton(
-                            onPressed: () {},
-                            child: Image.asset(
-                              "assets/img/fav.png",
-                              width: 15,
-                              height: 15,
-                              fit: BoxFit.contain,
-                            ),
-                          )
+                          // TextButton(
+                          //   onPressed: () {},
+                          //   child: Image.asset(
+                          //     "assets/img/fav.png",
+                          //     width: 15,
+                          //     height: 15,
+                          //     fit: BoxFit.contain,
+                          //   ),
+                          // )
                         ],
                       ),
                       SizedBox(
@@ -243,6 +284,19 @@ class _WorkoutDetailViewState extends State<WorkoutDetailView> {
                       SizedBox(
                         height: media.width * 0.05,
                       ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Description",
+                            style: TextStyle(
+                                color: TColor.black,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700),
+                          ),
+                        ],
+                      ),
+
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -309,6 +363,77 @@ class _WorkoutDetailViewState extends State<WorkoutDetailView> {
                       SizedBox(
                         height: media.width * 0.05,
                       ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Exercise Video",
+                            style: TextStyle(
+                                color: TColor.black,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700),
+                          ),
+                          PopupMenuButton<String>(
+                            onSelected: (value) {
+                              if (value == 'english') {
+                                // Navigate to the tracker screen or perform the tracker-related action
+                              } else if (value == 'telugu') {
+                                // Navigate to the feedback screen or perform the feedback-related action
+                              }
+                            },
+                            itemBuilder: (BuildContext context) =>
+                                <PopupMenuEntry<String>>[
+                              PopupMenuItem<String>(
+                                value: 'english',
+                                child: Text(
+                                  'English',
+                                  style: TextStyle(
+                                    color: TColor.black,
+                                    fontSize: 13,
+                                  ),
+                                ),
+                              ),
+                              PopupMenuItem<String>(
+                                value: 'telugu',
+                                child: Text(
+                                  'Telugu',
+                                  style: TextStyle(
+                                    color: TColor.black,
+                                    fontSize: 13,
+                                  ),
+                                ),
+                              ),
+                            ],
+                            child: Container(
+                              margin: const EdgeInsets.all(8),
+                              height: 40,
+                              width: 40,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                color: TColor.lightGray,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Image.asset(
+                                "assets/img/more_btn.png",
+                                width: 15,
+                                height: 15,
+                                fit: BoxFit.contain,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: media.width * 0.05,
+                      ),
+                      VideoPlayerWidget(
+                          // videoUrl: widget.dObj["video"] != null
+                          //     ? widget.dObj["video"].toString()
+                          //     : "",
+                          videoUrl:
+                              'https://www.youtube.com/watch?v=YMx8Bbev6T4',
+                          isYoutube: true),
+
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
