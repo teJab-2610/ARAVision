@@ -22,36 +22,36 @@ class _SettingUpState extends State<SettingUp> {
     {
       "title": "Required",
       "instruction":
-          "User a 3 meter brock string rope and tie one end to a window or a wall at seated eye level",
+          "Initially use a 1 meter brock string rope and tie one end to a window or a wall at seated eye level",
       "image": "assets/img/brock_string/settingup.jpg"
     },
     {
       "title": "Seating",
-      "instruction": "Before starting make sure you are comfortable seated.",
+      "instruction": "Before starting make sure you are comfortably seated.",
       "image": "assets/img/brock_string/sitting.jpg"
     },
     {
       "title": "Required",
       "instruction":
-          "Make sure the rope is taunt while doing the exercise. Don't use a slacked rope or place rope above/below your eye level",
+          "Make sure the rope is taut and straight at eye level while doing the exercise.",
       "image": "assets/img/brock_string/ropeateyelevel.jpg"
     },
+    // {
+    //   "title": "Exercise",
+    //   "instruction":
+    //       "Whenever you focus on a bead try to look for the patterns like A, V or X to make sure you are doing it right way",
+    //   "image": "assets/img/brock_string/pattern.jpg"
+    // },
+    // {
+    //   "title": "Exercise",
+    //   "instruction":
+    //       "For every step, try to focus your gaze on the bead for atleast 20 seconds",
+    //   "image": "assets/img/brock_string/focus.jpg"
+    // },
     {
       "title": "Exercise",
       "instruction":
-          "Whenever you focus on a bead try to look for the patterns like A, V or X to make sure you are doing it right way",
-      "image": "assets/img/brock_string/pattern.jpg"
-    },
-    {
-      "title": "Exercise",
-      "instruction":
-          "For every step, try to focus your gaze for atleast 20 seconds",
-      "image": "assets/img/brock_string/focus.jpg"
-    },
-    {
-      "title": "Exercise",
-      "instruction":
-          "In first stage of process, we try to focus on a bead at 3 different distances",
+          "In second stage of process, we try to focus on a bead at 3 different distances",
       "image": "assets/img/brock_string/beads4.jpg"
     },
     {
@@ -69,7 +69,7 @@ class _SettingUpState extends State<SettingUp> {
     {
       "title": "Caution",
       "instruction":
-          "If you are not seeing the rope as double, it means one eye is supressed.",
+          "If you are not seeing the rope as double, it could mean one eye is supressed.",
       "image": "assets/img/brock_string/dominanteye.jpg"
     },
     {
@@ -81,7 +81,7 @@ class _SettingUpState extends State<SettingUp> {
     {
       "title": "Caution",
       "instruction":
-          "If you feel any headache, please stop the session and try again",
+          "If you feel any headache, please stop the session and try again after a while",
       "image": "assets/img/brock_string/headache.gif"
     },
     {
@@ -184,34 +184,39 @@ class StepPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      // Center the contents on the screen
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              title,
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center, // Center-align the title text
-            ),
-            SizedBox(height: 8),
-            Text(
-              instructions,
-              style: TextStyle(fontSize: 16),
-              textAlign: TextAlign.center, // Center-align the instructions text
-            ),
-            SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: 20), // Padding for the image
-              child: Image.asset(
-                image,
-                fit: BoxFit.contain,
+    return Container(
+      width: 500,
+      height: 500,
+      child: Center(
+        // Center the contents on the screen
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                title,
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center, // Center-align the title text
               ),
-            ),
-          ],
+              SizedBox(height: 8),
+              Text(
+                instructions,
+                style: TextStyle(fontSize: 16),
+                textAlign:
+                    TextAlign.center, // Center-align the instructions text
+              ),
+              SizedBox(height: 20),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 20), // Padding for the image
+                child: Image.asset(
+                  image,
+                  fit: BoxFit.contain,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

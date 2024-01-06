@@ -7,8 +7,9 @@ import 'package:aravision/widgets/round_button.dart';
 import 'package:flutter/material.dart';
 import 'package:aravision/widgets/video_player.dart';
 import 'package:aravision/screens/exercise_steps.dart';
-
+import 'package:aravision/screens/workout.dart';
 //import '../widgets/exercises_set_section.dart';
+import 'package:aravision/screens/tracker_screen.dart';
 
 class WorkoutDetailView extends StatefulWidget {
   final Map dObj;
@@ -19,57 +20,51 @@ class WorkoutDetailView extends StatefulWidget {
 }
 
 class _WorkoutDetailViewState extends State<WorkoutDetailView> {
+  late int _expandedIndex;
   String language = 'English';
+  final Key _videoPlayerKey = UniqueKey();
   Widget _buildLanguageWidget() {
+    print("inside switch");
+    print(language);
     switch (language) {
-      case 'Tamil':
+      case 'தமிழ்':
         return _buildTamilWidget();
-      case 'Telugu':
+      case 'తెలుగు':
         return _buildTeluguWidget();
       default:
-        return _buildEnglishWidget();
+        return VideoPlayerWidget(
+            videoUrl: 'https://youtu.be/y0Y1Az-y6KE?feature=shared',
+            isYoutube: true,
+            key: _videoPlayerKey);
     }
   }
 
   Widget _buildEnglishWidget() {
-    return VideoPlayerWidget(
+    return const VideoPlayerWidget(
         // videoUrl: widget.dObj["video"] != null
         //     ? widget.dObj["video"].toString()
         //     : "",
-        videoUrl: 'https://www.youtube.com/watch?v=YMx8Bbev6T4',
+        videoUrl: 'https://www.youtube.com/watch?v=Yynbw1A5tfs',
         isYoutube: true);
   }
 
   Widget _buildTamilWidget() {
-    return VideoPlayerWidget(
+    return const VideoPlayerWidget(
         // videoUrl: widget.dObj["video"] != null
         //     ? widget.dObj["video"].toString()
         //     : "",
-        videoUrl: 'https://www.youtube.com/watch?v=YMx8Bbev6T4',
+        videoUrl: 'https://www.youtube.com/watch?v=Yynbw1A5tfs',
         isYoutube: true);
   }
 
   Widget _buildTeluguWidget() {
-    return VideoPlayerWidget(
+    return const VideoPlayerWidget(
         // videoUrl: widget.dObj["video"] != null
         //     ? widget.dObj["video"].toString()
         //     : "",
-        videoUrl: 'https://www.youtube.com/watch?v=YMx8Bbev6T4',
+        videoUrl: 'https://www.youtube.com/watch?v=FM7zzX7xK74',
         isYoutube: true);
   }
-
-  // List latestArr = [
-  //   {
-  //     "image": "assets/img/Workout1.png",
-  //     "title": "Fullbody Workout",
-  //     "time": "Today, 03:00pm"
-  //   },
-  //   {
-  //     "image": "assets/img/Workout2.png",
-  //     "title": "Upperbody Workout",
-  //     "time": "June 05, 02:00pm"
-  //   },
-  // ];
 
   List youArr = [
     {"image": "assets/img/brock-string.jpeg", "title": "Brock String"},
@@ -196,10 +191,10 @@ class _WorkoutDetailViewState extends State<WorkoutDetailView> {
                   onSelected: (value) {
                     // Handle the selected option
                     if (value == 'tracker') {
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: (context) => const HeatMapScreen()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const HeatMapScreen()));
                     } else if (value == 'feedback') {
                       // Navigator.push(
                       //     context,
@@ -221,23 +216,23 @@ class _WorkoutDetailViewState extends State<WorkoutDetailView> {
                 ),
               ],
             ),
-            // SliverAppBar(
-            //   backgroundColor: Colors.transparent,
-            //   centerTitle: true,
-            //   elevation: 0,
-            //   leadingWidth: 0,
-            //   leading: Container(),
-            //   expandedHeight: media.width * 0.5,
-            //   flexibleSpace: Align(
-            //     alignment: Alignment.center,
-            //     child: Image.asset(
-            //       "assets/img/detail_top.png",
-            //       width: media.width * 0.75,
-            //       height: media.width * 0.8,
-            //       fit: BoxFit.contain,
-            //     ),
-            //   ),
-            // ),
+            SliverAppBar(
+              backgroundColor: Colors.transparent,
+              centerTitle: true,
+              elevation: 0,
+              leadingWidth: 0,
+              leading: Container(),
+              expandedHeight: media.width * 0.3,
+              flexibleSpace: Align(
+                alignment: Alignment.center,
+                child: Image.asset(
+                  "assets/img/brockstring_cover.png",
+                  width: media.width * 0.75,
+                  height: media.width * 0.8,
+                  fit: BoxFit.contain,
+                ),
+              ),
+            ),
           ];
         },
         body: Container(
@@ -281,7 +276,7 @@ class _WorkoutDetailViewState extends State<WorkoutDetailView> {
                                       fontWeight: FontWeight.w700),
                                 ),
                                 Text(
-                                  "${widget.dObj["exercises"].toString()} | ${widget.dObj["time"].toString()} | 320 Calories Burn",
+                                  "${widget.dObj["exercises"].toString()} | ${widget.dObj["time"].toString()}",
                                   style: TextStyle(
                                       color: TColor.gray, fontSize: 12),
                                 ),
@@ -374,6 +369,17 @@ class _WorkoutDetailViewState extends State<WorkoutDetailView> {
                       // SizedBox(
                       //   height: media.width * 0.02,
                       // ),
+
+                      //horizontal line
+
+                      const SizedBox(height: 20),
+                      const SetupView(
+                        wObj: {
+                          "image": "assets/img/pic_4.png",
+                          "title": "Drinking 300ml Water",
+                          "time": "About 1 minutes ago"
+                        },
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -387,8 +393,10 @@ class _WorkoutDetailViewState extends State<WorkoutDetailView> {
                           DropdownButton<String>(
                             value: language,
                             onChanged: (String? newValue) {
+                              print("value changed");
                               setState(() {
                                 language = newValue!;
+                                print(language);
                               });
                             },
                             items: <String>['English', 'தமிழ்', 'తెలుగు']
@@ -399,7 +407,7 @@ class _WorkoutDetailViewState extends State<WorkoutDetailView> {
                                       value,
                                       style: TextStyle(
                                         color: TColor.black,
-                                        fontSize: 10,
+                                        fontSize: 12,
                                       ),
                                     ),
                                   ),
@@ -408,24 +416,16 @@ class _WorkoutDetailViewState extends State<WorkoutDetailView> {
                           ),
                         ],
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       _buildLanguageWidget(),
-                      //horizontal line
+
+                      const SizedBox(height: 20),
                       Container(
                         margin: const EdgeInsets.symmetric(vertical: 15),
                         height: 1,
                         width: double.infinity,
                         color: TColor.gray.withOpacity(0.3),
                       ),
-                      SizedBox(height: 20),
-                      SetupView(
-                        wObj: {
-                          "image": "assets/img/pic_4.png",
-                          "title": "Drinking 300ml Water",
-                          "time": "About 1 minutes ago"
-                        },
-                      ),
-                      SizedBox(height: 20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -438,7 +438,8 @@ class _WorkoutDetailViewState extends State<WorkoutDetailView> {
                           ),
                         ],
                       ),
-                      SizedBox(height: 10),
+
+                      const SizedBox(height: 10),
                       ListView.builder(
                         padding: EdgeInsets.zero,
                         physics: const NeverScrollableScrollPhysics(),
@@ -458,13 +459,13 @@ class _WorkoutDetailViewState extends State<WorkoutDetailView> {
                               children: [
                                 Text(
                                   eObj["title"].toString(),
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Colors.black,
                                     fontSize: 16,
                                     fontWeight: FontWeight.w700,
                                   ),
                                 ),
-                                SizedBox(height: 10),
+                                const SizedBox(height: 10),
                                 ListView.builder(
                                   padding: EdgeInsets.zero,
                                   physics: const NeverScrollableScrollPhysics(),
@@ -492,7 +493,7 @@ class _WorkoutDetailViewState extends State<WorkoutDetailView> {
                                               fit: BoxFit.contain,
                                             ),
                                           ),
-                                          SizedBox(width: 10),
+                                          const SizedBox(width: 10),
                                           Expanded(
                                             child: Column(
                                               crossAxisAlignment:
@@ -500,14 +501,14 @@ class _WorkoutDetailViewState extends State<WorkoutDetailView> {
                                               children: [
                                                 Text(
                                                   eObj["title"].toString(),
-                                                  style: TextStyle(
+                                                  style: const TextStyle(
                                                     color: Colors.black,
                                                     fontSize: 14,
                                                   ),
                                                 ),
                                                 Text(
                                                   eObj["value"].toString(),
-                                                  style: TextStyle(
+                                                  style: const TextStyle(
                                                     color: Colors.grey,
                                                     fontSize: 12,
                                                   ),
@@ -522,7 +523,7 @@ class _WorkoutDetailViewState extends State<WorkoutDetailView> {
                                                   eObj["description"]
                                                       .toString());
                                             },
-                                            child: Icon(
+                                            child: const Icon(
                                               Icons.arrow_forward_ios,
                                               size: 16,
                                               color: Colors.black,
@@ -533,7 +534,7 @@ class _WorkoutDetailViewState extends State<WorkoutDetailView> {
                                     );
                                   },
                                 ),
-                                SizedBox(height: 20), // Adjust as needed
+                                const SizedBox(height: 20), // Adjust as needed
                               ],
                             ),
                           );
@@ -551,7 +552,18 @@ class _WorkoutDetailViewState extends State<WorkoutDetailView> {
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      RoundButton(title: "Start Workout", onPressed: () {})
+                      RoundButton(
+                          title: "Start Workout",
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Workout()),
+                            );
+                          }),
+                      SizedBox(
+                        height: 12,
+                      )
                     ],
                   ),
                 )

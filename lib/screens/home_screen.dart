@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:aravision/common/colors_extension.dart';
 import '../../widgets/what_train_row.dart';
 import 'package:aravision/screens/workout_detail_view.dart';
+import 'package:flutter/services.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -34,9 +35,19 @@ class _HomeScreenState extends State<HomeScreen> {
     var media = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Aravision'),
+        title: Text('BroFocus'),
         centerTitle: true,
         backgroundColor: TColor.primaryColor2,
+        // leading: IconButton(
+        //   icon: Icon(
+        //     Icons.arrow_back_ios,
+        //     color: TColor.black,
+        //   ),
+        //   onPressed: () {
+        //     //close app
+        //     SystemNavigator.pop();
+        //   },
+        // ),
       ),
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20),
